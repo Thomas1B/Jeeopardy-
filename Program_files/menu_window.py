@@ -50,6 +50,8 @@ class MenuWindow(QMainWindow):
             '''
             QLineEdit {
                 background-color: white;
+                padding: 5px;
+                font-size: 16px;
             }
             '''
         )
