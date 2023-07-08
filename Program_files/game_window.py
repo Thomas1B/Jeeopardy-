@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QMainWindow, QWidget
+from PyQt5.QtWidgets import QMainWindow, QWidget, QSizePolicy
 from PyQt5 import QtWidgets, uic
-
+from PyQt5.QtCore import Qt
 
 class Question():
     '''
@@ -169,6 +169,11 @@ class QuestionWindow(QMainWindow):
             }
             '''
         )
+        self.setStyleSheet(
+            '''
+            background-color: rgb(0, 0, 255);
+            '''
+        )
         self.btn_question.setStyleSheet(
             '''
             QPushButton {
@@ -200,27 +205,38 @@ class QuestionWindow(QMainWindow):
         self.answer_label.hide()
 
         # Creating Widgets for add points to Team's
-        # self.team_frame = self.findChild(
-        #     QtWidgets.QFrame, 'team_frame'
-        # )
-        # self.layout_team_frame = QtWidgets.QVBoxLayout(self.team_frame)
-        # frame = QtWidgets.QFrame()
-        # layout = QtWidgets.QHBoxLayout(frame)
-        # for team in parent.teams:
-        #     team_name = parent.teams[team].name
-        #     points = str(parent.teams[team].points)
+        self.team_frame = self.findChild(
+            QtWidgets.QFrame, 'team_frame'
+        )
+        self.layout_team_frame = QtWidgets.QVBoxLayout(self.team_frame)
+        frame = QtWidgets.QFrame()
+        layout = QtWidgets.QHBoxLayout(frame)
+        for team in parent.teams:
+            team_name = parent.teams[team].name
+            points = str(parent.teams[team].points)
 
-        #     sub_frame = QtWidgets.QFrame()
-        #     sub_layout = QtWidgets.QVBoxLayout(sub_frame)
-        #     name_label = QtWidgets.QLabel(text=team_name)
-        #     points_label = QtWidgets.QLabel(text=points)
+            sub_frame = QtWidgets.QFrame()
+            sub_layout = QtWidgets.QVBoxLayout(sub_frame)
+            name_label = QtWidgets.QLabel(text=team_name)
+            points_label = QtWidgets.QLabel(text=points)
 
-        #     sub_layout.addWidget(name_label)
-        #     sub_layout.addWidget(points_label)
+            name_label.setAlignment(Qt.AlignCenter)
+            points_label.setAlignment(Qt.AlignCenter)
 
-        #     layout.addWidget(sub_frame)
+            sub_layout.addWidget(name_label)
+            sub_layout.addWidget(points_label)
+            sub_frame.setStyleSheet(
+                '''
+            QFrame {
+                font-size: 20px;
+                background-color: rgb(50, 50, 255);
+            }
+            '''
+            )
+            layout.addWidget(sub_frame)
 
-        # self.layout_team_frame.addWidget(frame)
+        self.layout_team_frame.addWidget(frame)
+        self.team_frame.setLayout(self.layout_team_frame)
 
         if self.questionObj.opened:
             self.show_answer()
@@ -987,6 +1003,15 @@ class TeamWindow(QMainWindow):
         '''
         for frame in frames:
             frame.show()
+
+    def get_team_objects(self) -> dict:
+        '''
+        Function to dictionary of Team objects
+
+            Returns:
+                dict of Team of objects, keys are team names.
+        '''
+        return self.parent().teams
 
     def set_team_names(self):
         '''
