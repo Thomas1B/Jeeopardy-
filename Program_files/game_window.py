@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import QMainWindow, QWidget, QSizePolicy
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt
 
+
 class Question():
     '''
     Class to store question and answer.
@@ -217,19 +218,38 @@ class QuestionWindow(QMainWindow):
 
             sub_frame = QtWidgets.QFrame()
             sub_layout = QtWidgets.QVBoxLayout(sub_frame)
-            name_label = QtWidgets.QLabel(text=team_name)
-            points_label = QtWidgets.QLabel(text=points)
+            name_btn = QtWidgets.QPushButton(text=team_name)
 
-            name_label.setAlignment(Qt.AlignCenter)
+            text = 'Points: {:.0f}'.format(float(points))
+            points_label = QtWidgets.QLabel(text=text)
+
+            name_btn.setSizePolicy(
+                QSizePolicy.Minimum, QSizePolicy.Minimum
+            )
             points_label.setAlignment(Qt.AlignCenter)
 
-            sub_layout.addWidget(name_label)
+            sub_layout.addWidget(name_btn)
             sub_layout.addWidget(points_label)
             sub_frame.setStyleSheet(
-                '''
-            QFrame {
-                font-size: 20px;
+            '''
+            QPushButton {
+                padding: 10px;
                 background-color: rgb(50, 50, 255);
+                color: rgb(255, 170, 0);
+                font-size: 30px;
+                margin: 0px 10px 0px 10px;
+            }
+
+            QFrame {
+                background-color: rgb(25, 25, 255);
+                color: rgb(255, 170, 0);
+                padding: 5px;
+                font-size: 30px;
+                border: 2px solid black;
+            }
+
+            QLabel { 
+                border: none;
             }
             '''
             )
