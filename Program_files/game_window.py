@@ -883,7 +883,6 @@ class TeamWindow(QMainWindow):
     def __init__(self, parent=None):
         super(TeamWindow, self).__init__(parent=parent)
         uic.loadUi('UI_Files/team_window.ui', self)
-        self.resize(800, 500)
 
         self.team_frame_1 = self.findChild(
             QtWidgets.QFrame, "team_frame_1"
@@ -920,7 +919,7 @@ class TeamWindow(QMainWindow):
         self.hide_frames(self.team_frames)
 
         self.frames_to_show = []
-        for index, team_name in enumerate(parent.teams.keys()):
+        for index, team_name in enumerate(parent.team_names):
             self.frames_to_show.append(self.team_frames[index])
 
         self.show_frames(self.frames_to_show)
@@ -956,6 +955,7 @@ class TeamWindow(QMainWindow):
         )
 
         # showing window
+        self.adjustSize()
         self.show()
 
     def closeEvent(self, event) -> None:
@@ -993,6 +993,9 @@ class TeamWindow(QMainWindow):
         Function to set labels with set names
         '''
         for frame, name, in zip(self.frames_to_show, self.parent().team_names):
-            frame.findChildren(QtWidgets.QLabel)[0].setText(name)
+            if len(name) <= 0:
+                frame.findChildren(QtWidgets.QLabel)[0].setText('Defaut')
+            else:
+                frame.findChildren(QtWidgets.QLabel)[0].setText(name)
             points = self.parent().teams[name].get_points()
             frame.findChildren(QtWidgets.QSpinBox)[0].setValue(points)
