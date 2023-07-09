@@ -967,7 +967,7 @@ class TeamWindow(QMainWindow):
                 '''
                 QFrame {
                     border: 1px solid;
-                    background-color: white;
+                    background-color: rgb(50, 50, 255);
                 }
 
                 QLabel {
@@ -975,18 +975,18 @@ class TeamWindow(QMainWindow):
                     padding: 5px;
                     font-size: 40px;
                     font-style: Times;
+                    color: rgb(250, 170, 0);
                 }
 
                 QSpinBox {
                     background-color: white;
-                    padding: 5px;
                     font-size: 30px;
                 }
                 '''
             )
         self.setStyleSheet(
             '''
-            background-color: rgb(100, 100, 250);
+            background-color: black;
             '''
         )
 
