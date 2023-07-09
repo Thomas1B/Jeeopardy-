@@ -231,7 +231,7 @@ class QuestionWindow(QMainWindow):
             sub_layout.addWidget(name_btn)
             sub_layout.addWidget(points_label)
             sub_frame.setStyleSheet(
-            '''
+                '''
             QPushButton {
                 padding: 10px;
                 background-color: rgb(50, 50, 255);
