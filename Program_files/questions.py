@@ -3,12 +3,15 @@ Script to store questions
 
 Each category corresponds to a column set of questions (6 questions).
 Questions in each category increase respectivitely down the column.
+
+
+DO NOT CHANGE NAMES OF ANY VARIABLE
 '''
 
 from .game_window import Question
 
 
-# column (category) name for each section of questions
+# Column (category) name for each section of questions
 category_names = []
 
 category1 = [
@@ -241,5 +244,7 @@ category6 = [
 ]
 
 
+
+# DO NOT CHANGE
 all_questions = [category1, category2,
                  category3, category4, category5, category6]
