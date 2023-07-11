@@ -1,78 +1,7 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget, QSizePolicy
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtCore import Qt
-
-
-class Question():
-    '''
-    Class to store question and answer.
-    '''
-
-    def __init__(self, question='', answer='', points=0):
-        self.question = question
-        self.answer = answer
-        self.points = points
-        self.opened = False  # if question has been opened.
-
-    def set_question(self, question: str) -> None:
-        '''
-        Function to set the question.
-
-            Parameter:
-                question: question to ask
-        '''
-        self.question = question
-
-    def set_answer(self, answer: str) -> None:
-        '''
-        Function to set the answer.
-
-            Parameter: answer
-        '''
-        self.answer = answer
-
-    def set_points(self, points: float) -> None:
-        '''
-        Function to set the points
-
-            Parameter:
-                points: how points.
-        '''
-        self.points = points
-
-    def get_question(self) -> str:
-        '''
-        Function to get the question.
-
-            Parameters: None
-
-            Returns:
-                question in a string.
-        '''
-        return self.question
-
-    def get_answer(self) -> str:
-        '''
-        Function to get the answer.
-
-            Parameters: None
-
-            Returns:
-                answer in a string.
-        '''
-        return self.answer
-
-    def get_points(self) -> float:
-        '''
-        Function to get the amount of points the question is worth.
-
-            Parameter:
-                None
-
-            Return:
-                float
-        '''
-        return self.points
+from .question_window import QuestionWindow, Question
 
 
 class Team():
@@ -124,181 +53,6 @@ class Team():
         self.points = self.points - points
 
 
-class QuestionWindow(QMainWindow):
-    '''
-    Class to handle questions
-    '''
-
-    def __init__(self, questionObj=None, parent=None, clicked_btn=None):
-        super(QuestionWindow, self).__init__(parent=parent)
-        uic.loadUi('UI_Files/question_window.ui', self)
-        self.resize(1500, 900)
-        self.move(200, 50)
-
-        # button that was clicked
-        self.clicked_btn = clicked_btn
-
-        # questionObj parameters
-        self.questionObj = questionObj
-        self.question = questionObj.get_question()
-        self.answer = questionObj.get_answer()
-        self.points = questionObj.get_points()
-
-        # Finding Widgets
-        self.header = self.findChild(
-            QtWidgets.QLabel, 'header'
-        )
-        self.btn_question = self.findChild(
-            QtWidgets.QPushButton
-        )
-        self.answer_label = self.findChild(
-            QtWidgets.QLabel, 'answer_label'
-        )
-
-        # Attaching Functions and setting text
-        self.btn_question.clicked.connect(self.show_answer)
-        header_text = 'For {:.0f} Points'.format(self.points)
-        self.header.setText(header_text)
-        self.btn_question.setText(self.question)
-
-        # Styling
-        self.header.setStyleSheet(
-            '''
-            QLabel {
-                color: rgb(255, 170, 0);
-                font-size: 75px;
-            }
-            '''
-        )
-        self.setStyleSheet(
-            '''
-            background-color: rgb(0, 0, 255);
-            '''
-        )
-        self.btn_question.setStyleSheet(
-            '''
-            QPushButton {
-                background-color: rgb(25, 25, 255);
-                color: white;
-                border: 2px solid black;
-                font-size: 50px;
-                margin: 20px 0px 20px 10px;
-                padding: 15px;
-            }
-
-            QPushButton:hover {
-                background-color: rgb(50, 50, 255);
-            }
-            '''
-        )
-        self.answer_label.setStyleSheet(
-            '''
-            QLabel {
-                background-color: rgb(25, 25, 255);
-                color: white;
-                border: 2px solid black;
-                font-size: 50px;
-                padding: 20px;
-                min-height: 200px;
-            }
-            '''
-        )
-        self.answer_label.hide()
-
-        # Creating Widgets for add points to Team's
-        self.team_frame = self.findChild(
-            QtWidgets.QFrame, 'team_frame'
-        )
-        self.layout_team_frame = QtWidgets.QVBoxLayout(self.team_frame)
-        frame = QtWidgets.QFrame()
-        layout = QtWidgets.QHBoxLayout(frame)
-        for team in parent.teams:
-            team_name = parent.teams[team].name
-            points = str(parent.teams[team].points)
-
-            sub_frame = QtWidgets.QFrame()
-            sub_layout = QtWidgets.QVBoxLayout(sub_frame)
-            name_btn = QtWidgets.QPushButton(text=team_name)
-
-            text = 'Points: {:.0f}'.format(float(points))
-            points_label = QtWidgets.QLabel(text=text)
-
-            name_btn.setSizePolicy(
-                QSizePolicy.Minimum, QSizePolicy.Minimum
-            )
-            points_label.setAlignment(Qt.AlignCenter)
-
-            sub_layout.addWidget(name_btn)
-            sub_layout.addWidget(points_label)
-            sub_frame.setStyleSheet(
-                '''
-            QPushButton {
-                padding: 10px;
-                background-color: rgb(50, 50, 255);
-                color: rgb(255, 170, 0);
-                font-size: 30px;
-                margin: 0px 10px 0px 10px;
-            }
-
-            QFrame {
-                background-color: rgb(25, 25, 255);
-                color: rgb(255, 170, 0);
-                padding: 5px;
-                font-size: 30px;
-                border: 2px solid black;
-            }
-
-            QLabel { 
-                border: none;
-            }
-            '''
-            )
-            layout.addWidget(sub_frame)
-
-        self.layout_team_frame.addWidget(frame)
-        self.team_frame.setLayout(self.layout_team_frame)
-
-        if self.questionObj.opened:
-            self.show_answer()
-
-    def closeEvent(self, event) -> None:
-        event.accept()
-
-    def show_answer(self) -> None:
-        '''
-        Function to show the answer, when the button is clicked
-        '''
-        self.questionObj.opened = True
-        self.btn_question.setEnabled(False)
-        self.btn_question.setStyleSheet(
-            '''
-            QPushButton {
-                background-color: rgb(50, 50, 255);
-                color: white;
-                font-size: 50px;
-                margin: 20px 0px 20px 10px;
-                padding: 15px;
-
-            }
-            '''
-        )
-
-        text = f'Answer:\n\n{self.answer}\n'
-        self.answer_label.setText(text)
-        self.answer_label.show()
-        self.clicked_btn.setStyleSheet(
-            '''
-            QPushButton {
-                color: rgb(255, 170, 0);
-                background-color: rgb(50, 50, 255);
-                text-decoration: line-through;
-                font-size: 40px;
-
-            }
-            '''
-        )
-
-
 class GameWindow(QMainWindow):
     '''
     Class to handle the game window
@@ -309,11 +63,13 @@ class GameWindow(QMainWindow):
         uic.loadUi('UI_Files/game_window.ui', self)
         # self.showMaximized()
 
+        self.team_names = team_names
+        self.team_objects = self.make_teams()
+
         # variables to store and keep track of things
+        self.team_names = team_names
         self.category_names = category_names
         self.all_questions = questions
-        self.team_names = team_names
-        self.teams = self.make_teams()
         self.question_window = None
         self.in_edit_mode = False
 
@@ -374,7 +130,8 @@ class GameWindow(QMainWindow):
         self.set_category_names(category_names)
         self.show()
 
-        self.team_window = TeamWindow(parent=self)
+        self.team_window = TeamWindow(
+            team_names=team_names, team_objects=self.team_objects, parent=self)
         self.team_window.show()
 
     def closeEvent(self, event) -> None:
@@ -400,7 +157,16 @@ class GameWindow(QMainWindow):
         else:
             event.ignore()
 
-    def toggle_header_btns(self, enabled=False):
+    def make_teams(self) -> None:
+        '''
+        Function to make the teams
+        '''
+        teams = {}
+        for name in self.team_names:
+            teams[name] = Team(name)
+        return teams
+
+    def toggle_header_btns(self, enabled=False) -> None:
         '''
         Function to toggle the header buttons
 
@@ -433,7 +199,7 @@ class GameWindow(QMainWindow):
                 '''
             )
 
-    def set_up_buttons(self):
+    def set_up_buttons(self) -> None:
         '''
         Function to set up buttons and add styles.
         '''
@@ -606,7 +372,7 @@ class GameWindow(QMainWindow):
                 self.all_questions[5][5])
         )
 
-    def make_teams(self):
+    def make_teams(self) -> None:
         '''
         Function to make the teams
         '''
@@ -615,7 +381,7 @@ class GameWindow(QMainWindow):
             teams[name] = Team(name)
         return teams
 
-    def open_question_window(self, questionObj: Question):
+    def open_question_window(self, questionObj: Question) -> None:
         '''
         Function to open the question window
         '''
@@ -624,10 +390,13 @@ class GameWindow(QMainWindow):
         clicked_btn = self.findChild(QtWidgets.QPushButton, btn_name)
 
         self.question_window = QuestionWindow(
-            parent=self, questionObj=questionObj, clicked_btn=clicked_btn)
+            parent=self,
+            questionObj=questionObj,
+            clicked_btn=clicked_btn
+        )
         self.question_window.show()
 
-    def edit_mode(self):
+    def edit_mode(self) -> None:
         '''
         Function to put the program in edit mode.
         '''
@@ -818,14 +587,15 @@ class GameWindow(QMainWindow):
             self.toggle_header_btns(enabled=False)
             self.set_up_buttons()
 
-    def open_edit_window(self, questionObj: Question):
+    def open_edit_window(self, questionObj: Question, team_names: list) -> None:
         '''
         Function to open the edit window
         '''
         # self.edit_window = EditQuestion(
         #     questionObj=questionObj, parent=self)
         # self.edit_window.show()
-        self.edit_window = EditWindow(object_to_edit=questionObj, parent=self)
+        self.edit_window = EditWindow(
+            object_to_edit=questionObj, team_names=team_names, parent=self)
         self.edit_window.show()
 
 
@@ -897,7 +667,7 @@ class EditWindow(QtWidgets.QDialog):
             '''
         )
 
-    def submit(self):
+    def submit(self) -> None:
         '''
         Function to update entries
         '''
@@ -916,9 +686,14 @@ class TeamWindow(QMainWindow):
     Class to run the team window for add points
     '''
 
-    def __init__(self, parent=None):
+    def __init__(self, team_names: list, team_objects: dict, parent=None):
         super(TeamWindow, self).__init__(parent=parent)
         uic.loadUi('UI_Files/team_window.ui', self)
+
+        self.team_names = team_names
+        self.team_objects = team_objects
+
+        ''' Finding Widgets '''
 
         self.team_frame_1 = self.findChild(
             QtWidgets.QFrame, "team_frame_1"
@@ -954,10 +729,53 @@ class TeamWindow(QMainWindow):
                             self.team_frame_4, self.team_frame_5, self.team_frame_6, self.team_frame_7, self.team_frame_8, self.team_frame_9, self.team_frame_10]
         self.hide_frames(self.team_frames)
 
-        self.frames_to_show = []
-        for index, team_name in enumerate(parent.team_names):
-            self.frames_to_show.append(self.team_frames[index])
+        self.spinBox_points1 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_1"
+        )
+        self.spinBox_points2 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_2"
+        )
+        self.spinBox_points3 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_3"
+        )
+        self.spinBox_points4 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_4"
+        )
+        self.spinBox_points5 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_5"
+        )
+        self.spinBox_points6 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_6"
+        )
+        self.spinBox_points7 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_7"
+        )
+        self.spinBox_points8 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_8"
+        )
+        self.spinBox_points9 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_9"
+        )
+        self.spinBox_points10 = self.findChild(
+            QtWidgets.QSpinBox, "spinBox_points_10"
+        )
 
+        ''' Attaching Functions to spinBox '''
+        # self.spinBox_points1.valueChanged.connect(self.points_changed)
+        # self.spinBox_points2.valueChanged.connect(self.points_changed)
+        # self.spinBox_points3.valueChanged.connect(self.points_changed)
+        # self.spinBox_points4.valueChanged.connect(self.points_changed)
+        # self.spinBox_points5.valueChanged.connect(self.points_changed)
+        # self.spinBox_points6.valueChanged.connect(self.points_changed)
+        # self.spinBox_points7.valueChanged.connect(self.points_changed)
+        # self.spinBox_points8.valueChanged.connect(self.points_changed)
+        # self.spinBox_points9.valueChanged.connect(self.points_changed)
+        # self.spinBox_points10.valueChanged.connect(self.points_changed)
+
+        # Showing N Teams frames
+        self.frames_to_show = []
+        for index, team_name in enumerate(self.team_names):
+            self.frames_to_show.append(self.team_frames[index])
         self.show_frames(self.frames_to_show)
         self.set_team_names()
 
@@ -1004,7 +822,7 @@ class TeamWindow(QMainWindow):
         else:
             event.ignore()
 
-    def hide_frames(self, frames: list):
+    def hide_frames(self, frames: list) -> None:
         '''
         Function to hide team sub frames.
 
@@ -1014,7 +832,7 @@ class TeamWindow(QMainWindow):
         for frame in frames:
             frame.hide()
 
-    def show_frames(self, frames: list):
+    def show_frames(self, frames: list) -> None:
         '''
         Function to show team sub frames.
 
@@ -1024,23 +842,45 @@ class TeamWindow(QMainWindow):
         for frame in frames:
             frame.show()
 
-    def get_team_objects(self) -> dict:
-        '''
-        Function to dictionary of Team objects
-
-            Returns:
-                dict of Team of objects, keys are team names.
-        '''
-        return self.parent().teams
-
-    def set_team_names(self):
+    def set_team_names(self) -> None:
         '''
         Function to set labels with set names
         '''
-        for frame, name, in zip(self.frames_to_show, self.parent().team_names):
+        for frame, name, in zip(self.frames_to_show, self.team_names):
             if len(name) <= 0:
                 frame.findChildren(QtWidgets.QLabel)[0].setText('Defaut')
             else:
                 frame.findChildren(QtWidgets.QLabel)[0].setText(name)
-            points = self.parent().teams[name].get_points()
+            points = self.team_objects[name].get_points()
             frame.findChildren(QtWidgets.QSpinBox)[0].setValue(points)
+
+    def points_changed(self, points=0) -> None:
+        '''
+        Function to update team points
+        '''
+
+        sender = self.sender()
+        sender_name = sender.objectName()
+
+        name_dict = {
+            1: 'spinBox_points_1',
+            2: 'spinBox_points_2',
+            3: 'spinBox_points_3',
+            4: 'spinBox_points_4',
+            5: 'spinBox_points_5',
+            6: 'spinBox_points_6',
+            7: 'spinBox_points_7',
+            8: 'spinBox_points_8',
+            9: 'spinBox_points_9',
+            10: 'spinBox_points_10',
+        }
+
+        key = int(sender_name.split('_')[-1])
+        self.team_to_update = self.team_objects[list(self.team_objects)[key-1]]
+
+        self.team_to_update.add_points(points)
+
+        spinbox = self.findChild(
+            QtWidgets.QSpinBox, name_dict[float(sender_name.split('_')[-1])]
+        )
+        spinbox.setValue(self.team_to_update.get_points())

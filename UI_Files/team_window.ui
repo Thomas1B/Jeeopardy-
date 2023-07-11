@@ -56,7 +56,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_3">
+           <widget class="QSpinBox" name="spinBox_points_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -112,7 +112,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_8">
+           <widget class="QSpinBox" name="spinBox_points_7">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -224,7 +224,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_11">
+           <widget class="QSpinBox" name="spinBox_points_10">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -280,7 +280,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_9">
+           <widget class="QSpinBox" name="spinBox_points_8">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -336,7 +336,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_10">
+           <widget class="QSpinBox" name="spinBox_points_9">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -392,7 +392,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_4">
+           <widget class="QSpinBox" name="spinBox_points_3">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -448,7 +448,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_5">
+           <widget class="QSpinBox" name="spinBox_points_4">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -504,7 +504,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_6">
+           <widget class="QSpinBox" name="spinBox_points_5">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -560,7 +560,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_7">
+           <widget class="QSpinBox" name="spinBox_points_6">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
