@@ -8,6 +8,8 @@ This game runs using Python with PyQt5 module for the gui.
 
 Download PyQt5 https://pypi.org/project/PyQt5/
 
+To run the game type *"python main.py"*.
+
 ___
 
 To create question prior to starting game, open "questions.py" in the Program_files folder.<br>
