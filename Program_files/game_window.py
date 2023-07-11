@@ -926,4 +926,4 @@ class TeamWindow(QMainWindow):
         lineEdit = self.findChild(
             QtWidgets.QLineEdit, name_dict[float(sender_name.split('_')[-1])]
         )
-        lineEdit.setText(str(self.team_to_update.get_points()))
+        lineEdit.setText(str(round(self.team_to_update.get_points())))
