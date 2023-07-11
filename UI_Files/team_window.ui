@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
-    <height>403</height>
+    <width>536</width>
+    <height>497</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,13 +26,19 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="1">
         <widget class="QFrame" name="team_frame_2">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_4">
+         <layout class="QVBoxLayout" name="verticalLayout_3">
           <item>
            <widget class="QLabel" name="team_name_3">
             <property name="sizePolicy">
@@ -56,24 +62,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_2">
+           <widget class="QLineEdit" name="lineEdit_2">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -82,13 +79,19 @@
        </item>
        <item row="3" column="0">
         <widget class="QFrame" name="team_frame_7">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_9">
+         <layout class="QVBoxLayout" name="verticalLayout_8">
           <item>
            <widget class="QLabel" name="team_name_8">
             <property name="sizePolicy">
@@ -112,24 +115,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_7">
+           <widget class="QLineEdit" name="lineEdit_7">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -138,6 +132,12 @@
        </item>
        <item row="0" column="0">
         <widget class="QFrame" name="team_frame_1">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -168,24 +168,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_1">
+           <widget class="QLineEdit" name="lineEdit_1">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -194,13 +185,19 @@
        </item>
        <item row="5" column="1">
         <widget class="QFrame" name="team_frame_10">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_12">
+         <layout class="QVBoxLayout" name="verticalLayout_11">
           <item>
            <widget class="QLabel" name="team_name_11">
             <property name="sizePolicy">
@@ -224,24 +221,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_10">
+           <widget class="QLineEdit" name="lineEdit_10">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -250,13 +238,19 @@
        </item>
        <item row="3" column="1">
         <widget class="QFrame" name="team_frame_8">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_10">
+         <layout class="QVBoxLayout" name="verticalLayout_9">
           <item>
            <widget class="QLabel" name="team_name_9">
             <property name="sizePolicy">
@@ -280,24 +274,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_8">
+           <widget class="QLineEdit" name="lineEdit_8">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -306,13 +291,19 @@
        </item>
        <item row="5" column="0">
         <widget class="QFrame" name="team_frame_9">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_11">
+         <layout class="QVBoxLayout" name="verticalLayout_7">
           <item>
            <widget class="QLabel" name="team_name_10">
             <property name="sizePolicy">
@@ -336,24 +327,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_9">
+           <widget class="QLineEdit" name="lineEdit_9">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -362,13 +344,19 @@
        </item>
        <item row="1" column="0">
         <widget class="QFrame" name="team_frame_3">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+         <layout class="QVBoxLayout" name="verticalLayout_4">
           <item>
            <widget class="QLabel" name="team_name_4">
             <property name="sizePolicy">
@@ -392,24 +380,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_3">
+           <widget class="QLineEdit" name="lineEdit_3">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -418,13 +397,19 @@
        </item>
        <item row="1" column="1">
         <widget class="QFrame" name="team_frame_4">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_6">
+         <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
            <widget class="QLabel" name="team_name_5">
             <property name="sizePolicy">
@@ -448,24 +433,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_4">
+           <widget class="QLineEdit" name="lineEdit_4">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -474,13 +450,19 @@
        </item>
        <item row="2" column="0">
         <widget class="QFrame" name="team_frame_5">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_7">
+         <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
            <widget class="QLabel" name="team_name_6">
             <property name="sizePolicy">
@@ -504,24 +486,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_5">
+           <widget class="QLineEdit" name="lineEdit_5">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -530,13 +503,19 @@
        </item>
        <item row="2" column="1">
         <widget class="QFrame" name="team_frame_6">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Raised</enum>
          </property>
-         <layout class="QVBoxLayout" name="verticalLayout_8">
+         <layout class="QVBoxLayout" name="verticalLayout_10">
           <item>
            <widget class="QLabel" name="team_name_7">
             <property name="sizePolicy">
@@ -560,24 +539,15 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_points_6">
+           <widget class="QLineEdit" name="lineEdit_6">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="wrapping">
-             <bool>true</bool>
-            </property>
-            <property name="minimum">
-             <number>-500000000</number>
-            </property>
-            <property name="maximum">
-             <number>500000000</number>
-            </property>
-            <property name="singleStep">
-             <number>100</number>
+            <property name="readOnly">
+             <bool>false</bool>
             </property>
            </widget>
           </item>
@@ -594,7 +564,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>585</width>
+     <width>536</width>
      <height>21</height>
     </rect>
    </property>
