@@ -1,6 +1,6 @@
 # Jeopardy!
 
-WWelcome to the classic Jeopardy game!
+Welcome to the classic Jeopardy game!
 
 This game runs using Python with PyQt5 module for the gui.
 
