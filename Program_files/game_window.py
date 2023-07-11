@@ -1,7 +1,8 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget, QSizePolicy
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, pyqtSignal
 from .question_window import QuestionWindow, Question
+from PyQt5.QtGui import QIntValidator, QIcon
 
 
 class Team():
@@ -25,7 +26,7 @@ class Team():
         '''
         return self.points
 
-    def set_point(self, points: float) -> None:
+    def set_points(self, points: float) -> None:
         '''
         Function to set points.
 
@@ -655,13 +656,13 @@ class EditWindow(QtWidgets.QDialog):
         self.setLayout(layout)
         self.setStyleSheet(
             '''
-            QLabel { 
+            QLabel {
                 font-size: 20px;
             }
-            QLineEdit { 
+            QLineEdit {
                 font-size: 12px;
             }
-            QPlainTextEdit { 
+            QPlainTextEdit {
                 font-size: 12px;
             }
             '''
@@ -729,48 +730,52 @@ class TeamWindow(QMainWindow):
                             self.team_frame_4, self.team_frame_5, self.team_frame_6, self.team_frame_7, self.team_frame_8, self.team_frame_9, self.team_frame_10]
         self.hide_frames(self.team_frames)
 
-        self.spinBox_points1 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_1"
+        self.lineEdit1 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_1"
         )
-        self.spinBox_points2 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_2"
+        self.lineEdit2 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_2"
         )
-        self.spinBox_points3 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_3"
+        self.lineEdit3 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_3"
         )
-        self.spinBox_points4 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_4"
+        self.lineEdit4 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_4"
         )
-        self.spinBox_points5 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_5"
+        self.lineEdit5 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_5"
         )
-        self.spinBox_points6 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_6"
+        self.lineEdit6 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_6"
         )
-        self.spinBox_points7 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_7"
+        self.lineEdit7 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_7"
         )
-        self.spinBox_points8 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_8"
+        self.lineEdit8 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_8"
         )
-        self.spinBox_points9 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_9"
+        self.lineEdit9 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_9"
         )
-        self.spinBox_points10 = self.findChild(
-            QtWidgets.QSpinBox, "spinBox_points_10"
+        self.lineEdit10 = self.findChild(
+            QtWidgets.QLineEdit, "lineEdit_10"
         )
 
+        # setting lineEdit to allow only numbers.
+        for lineEdit in self.findChildren(QtWidgets.QLineEdit):
+            lineEdit.setValidator(QIntValidator())
+
         ''' Attaching Functions to spinBox '''
-        # self.spinBox_points1.valueChanged.connect(self.points_changed)
-        # self.spinBox_points2.valueChanged.connect(self.points_changed)
-        # self.spinBox_points3.valueChanged.connect(self.points_changed)
-        # self.spinBox_points4.valueChanged.connect(self.points_changed)
-        # self.spinBox_points5.valueChanged.connect(self.points_changed)
-        # self.spinBox_points6.valueChanged.connect(self.points_changed)
-        # self.spinBox_points7.valueChanged.connect(self.points_changed)
-        # self.spinBox_points8.valueChanged.connect(self.points_changed)
-        # self.spinBox_points9.valueChanged.connect(self.points_changed)
-        # self.spinBox_points10.valueChanged.connect(self.points_changed)
+        self.lineEdit1.returnPressed.connect(self.user_change)
+        self.lineEdit2.returnPressed.connect(self.user_change)
+        self.lineEdit3.returnPressed.connect(self.user_change)
+        self.lineEdit4.returnPressed.connect(self.user_change)
+        self.lineEdit5.returnPressed.connect(self.user_change)
+        self.lineEdit6.returnPressed.connect(self.user_change)
+        self.lineEdit7.returnPressed.connect(self.user_change)
+        self.lineEdit8.returnPressed.connect(self.user_change)
+        self.lineEdit9.returnPressed.connect(self.user_change)
+        self.lineEdit10.returnPressed.connect(self.user_change)
 
         # Showing N Teams frames
         self.frames_to_show = []
@@ -796,7 +801,7 @@ class TeamWindow(QMainWindow):
                     color: rgb(250, 170, 0);
                 }
 
-                QSpinBox {
+                QLineEdit {
                     background-color: white;
                     font-size: 30px;
                 }
@@ -852,7 +857,45 @@ class TeamWindow(QMainWindow):
             else:
                 frame.findChildren(QtWidgets.QLabel)[0].setText(name)
             points = self.team_objects[name].get_points()
-            frame.findChildren(QtWidgets.QSpinBox)[0].setValue(points)
+            frame.findChildren(QtWidgets.QLineEdit)[0].setText(str(points))
+
+    def user_change(self) -> None:
+        '''
+        Function to handle LineEdit values changing
+        '''
+
+        # Popup warning user that manualling edit points will overwrite the team points.
+        msg = QtWidgets.QMessageBox()
+        msg.setIcon(QtWidgets.QMessageBox.Warning)
+        pixmapi = getattr(QtWidgets.QStyle, "SP_MessageBoxWarning")
+        icon = self.style().standardIcon(pixmapi)
+        msg.setWindowIcon(icon)
+        msg.setWindowTitle("Jeopardy! - Changing Points")
+        text = 'Warning!\n\n This will overwrite Team points.'
+        msg.setText(text)
+        msg.setStandardButtons(
+            QtWidgets.QMessageBox.Ok |
+            QtWidgets.QMessageBox.Cancel
+        )
+        msg.setDefaultButton(QtWidgets.QMessageBox.Ok)
+        user = msg.exec_()
+
+        # if user clicks 'Ok':
+        if user == QtWidgets.QMessageBox.Ok:
+            # getting what lineEdit has been editted.
+            sender = self.sender()
+            sender_name = sender.objectName()
+            lineEdit = self.findChild(QtWidgets.QLineEdit, sender_name)
+
+            points = lineEdit.text()  # user typed points.
+            lineEdit.setText(points)
+
+            # updating Team Object's points:
+            team_objects = self.parent().team_objects
+            for index, frame in enumerate(self.frames_to_show):
+                if lineEdit in frame.findChildren(QtWidgets.QLineEdit):
+                    team_name = list(team_objects)[index]
+                    team_objects[team_name].set_points(float(points))
 
     def points_changed(self, points=0) -> None:
         '''
@@ -863,16 +906,16 @@ class TeamWindow(QMainWindow):
         sender_name = sender.objectName()
 
         name_dict = {
-            1: 'spinBox_points_1',
-            2: 'spinBox_points_2',
-            3: 'spinBox_points_3',
-            4: 'spinBox_points_4',
-            5: 'spinBox_points_5',
-            6: 'spinBox_points_6',
-            7: 'spinBox_points_7',
-            8: 'spinBox_points_8',
-            9: 'spinBox_points_9',
-            10: 'spinBox_points_10',
+            1: 'lineEdit_1',
+            2: 'lineEdit_2',
+            3: 'lineEdit_3',
+            4: 'lineEdit_4',
+            5: 'lineEdit_5',
+            6: 'lineEdit_6',
+            7: 'lineEdit_7',
+            8: 'lineEdit_8',
+            9: 'lineEdit_9',
+            10: 'lineEdit_10',
         }
 
         key = int(sender_name.split('_')[-1])
@@ -880,7 +923,7 @@ class TeamWindow(QMainWindow):
 
         self.team_to_update.add_points(points)
 
-        spinbox = self.findChild(
-            QtWidgets.QSpinBox, name_dict[float(sender_name.split('_')[-1])]
+        lineEdit = self.findChild(
+            QtWidgets.QLineEdit, name_dict[float(sender_name.split('_')[-1])]
         )
-        spinbox.setValue(self.team_to_update.get_points())
+        lineEdit.setText(str(self.team_to_update.get_points()))
