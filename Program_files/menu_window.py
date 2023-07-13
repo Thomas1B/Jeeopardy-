@@ -19,6 +19,9 @@ class MenuWindow(QMainWindow):
         self.team_count = 2
 
         ''' Defining widgets '''
+        self.title = self.findChild(
+            QtWidgets.QLabel, 'title'
+        )
         self.spinBox_num_teams = self.findChild(
             QtWidgets.QSpinBox, 'how_many_teams_spinBox'
         )
@@ -38,6 +41,14 @@ class MenuWindow(QMainWindow):
         self.btn_play.clicked.connect(self.open_game_window)
 
         ''' Styling '''
+        self.title.setStyleSheet(
+            '''
+            QLabel {
+                font-size: 40px;
+                padding: 15px;
+            }
+            '''
+        )
         self.spinBox_num_teams.setStyleSheet(
             '''
             QSpinBox {
@@ -52,6 +63,16 @@ class MenuWindow(QMainWindow):
                 background-color: white;
                 padding: 5px;
                 font-size: 16px;
+            }
+            '''
+        )
+        self.btn_play.setStyleSheet(
+            '''
+            QPushButton:focus {
+                border: 1px solid blue;
+            }
+            QPushButton:hover {
+                border: 1px solid blue;
             }
             '''
         )

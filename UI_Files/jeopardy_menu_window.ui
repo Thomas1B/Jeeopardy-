@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>583</width>
-    <height>287</height>
+    <width>531</width>
+    <height>274</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -38,29 +38,18 @@
         <widget class="QLabel" name="title">
          <property name="font">
           <font>
-           <pointsize>24</pointsize>
+           <family>Arial</family>
+           <pointsize>18</pointsize>
           </font>
          </property>
          <property name="text">
-          <string>Welcome to</string>
+          <string>Welcome to Jeopardy!</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
          </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="title_2">
-         <property name="font">
-          <font>
-           <pointsize>24</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Jeopardy!</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
+         <property name="wordWrap">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -224,6 +213,9 @@
          <property name="default">
           <bool>true</bool>
          </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
         </widget>
        </item>
       </layout>
@@ -236,7 +228,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>583</width>
+     <width>531</width>
      <height>21</height>
     </rect>
    </property>
