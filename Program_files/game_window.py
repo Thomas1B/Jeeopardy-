@@ -169,7 +169,7 @@ class GameWindow(QMainWindow):
 
     def toggle_header_btns(self, enabled=False) -> None:
         '''
-        Function to toggle the header buttons
+        Function to toggle the header buttons, used in editting mode.
 
             Parameters:
                 enabled: True -  button is activated.
