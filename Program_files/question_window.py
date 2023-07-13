@@ -207,6 +207,7 @@ class QuestionWindow(QMainWindow):
         for index, team_name in enumerate(parent.team_names):
             self.frames_to_show.append(self.team_frames_list[index])
         self.show_frames(self.frames_to_show)
+        self.toggle_team_btns()
 
         # setting team frame info
         for index, frame in enumerate(self.frames_to_show):
@@ -308,10 +309,27 @@ class QuestionWindow(QMainWindow):
         for frame in frames:
             frame.hide()
 
+    def toggle_team_btns(self, enabled=False):
+        '''
+        Function to toggle team pushbutton.
+
+            Parameter:
+                enabled: False - disabled button, True - enabled button.
+        '''
+
+        for frame in self.frames_to_show:
+            btn = frame.findChildren(QtWidgets.QPushButton)[0]
+            btn.setEnabled(enabled)
+
     def show_answer(self) -> None:
         '''
         Function to show the answer, when the button is clicked
         '''
+        if self.questionObj.opened:
+            self.toggle_team_btns(False)
+        else:
+            self.toggle_team_btns(True)
+
         self.questionObj.opened = True
         self.btn_question.setEnabled(False)
         self.btn_question.setStyleSheet(
