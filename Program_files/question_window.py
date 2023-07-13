@@ -89,6 +89,9 @@ class QuestionWindow(QMainWindow):
         # parent window
         self.parent = parent
 
+        # if points have been added to the team.
+        self.points_added = False
+
         # button that was clicked
         self.clicked_btn = clicked_btn
 
@@ -287,7 +290,27 @@ class QuestionWindow(QMainWindow):
             self.show_answer()
 
     def closeEvent(self, event) -> None:
-        event.accept()
+        if self.points_added:
+            event.accept()
+        else:
+            event.ignore()
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Jeopardy! - Points Not Added")
+            pixmapi = getattr(QtWidgets.QStyle, "SP_MessageBoxWarning")
+            icon = self.style().standardIcon(pixmapi)
+            msg.setWindowIcon(icon)
+            text = 'Points not added to Team!'
+            msg.setText(text)
+            msg.setStandardButtons(
+                QtWidgets.QMessageBox.Ok |
+                QtWidgets.QMessageBox.Cancel
+            )
+            msg.setDefaultButton(QtWidgets.QMessageBox.Ok)
+            user = msg.exec_()
+
+            match user:
+                case QtWidgets.QMessageBox.Ok:
+                    event.accept()
 
     def show_frames(self, frames: list) -> None:
         '''
@@ -426,4 +449,5 @@ class QuestionWindow(QMainWindow):
                 )
 
         # calling function in parent window to update points in the TeamWindow Class.
+        self.points_added = True
         self.parent.team_window.points_changed(points)
