@@ -1,6 +1,4 @@
-# Jeopardy!
-
-## Welcome to the classic Jeopardy game!
+# Welcome to the classic Jeopardy game!
 
 ![Alt text](Program_files/images/game.png)
 
