@@ -293,6 +293,7 @@ class QuestionWindow(QMainWindow):
         if self.points_added:
             event.accept()
         else:
+            # pop up telling user points haven't been added.
             event.ignore()
             msg = QtWidgets.QMessageBox()
             msg.setWindowTitle("Jeopardy! - Points Not Added")
@@ -305,12 +306,14 @@ class QuestionWindow(QMainWindow):
                 QtWidgets.QMessageBox.Ok |
                 QtWidgets.QMessageBox.Cancel
             )
-            msg.setDefaultButton(QtWidgets.QMessageBox.Ok)
+            msg.setDefaultButton(QtWidgets.QMessageBox.Cancel)
             user = msg.exec_()
 
             match user:
                 case QtWidgets.QMessageBox.Ok:
                     event.accept()
+                case _:
+                    event.ignore()
 
     def show_frames(self, frames: list) -> None:
         '''
