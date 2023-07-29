@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMainWindow, QApplication
 from Program_files.menu_window import MenuWindow
-from Program_files.questions import all_questions, category_names
+from questions import all_questions, category_names
 import sys
 
 
