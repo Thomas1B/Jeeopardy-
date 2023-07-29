@@ -8,7 +8,7 @@ Questions in each category increase respectivitely down the column.
 DO NOT CHANGE NAMES OF ANY VARIABLE
 '''
 
-from .game_window import Question
+from Program_files.game_window import Question
 
 
 # Column (category) name for each section of questions
