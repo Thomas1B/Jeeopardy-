@@ -852,10 +852,7 @@ class TeamWindow(QMainWindow):
         Function to set labels with set names
         '''
         for frame, name, in zip(self.frames_to_show, self.team_names):
-            if len(name) <= 0:
-                frame.findChildren(QtWidgets.QLabel)[0].setText('Defaut')
-            else:
-                frame.findChildren(QtWidgets.QLabel)[0].setText(name)
+            frame.findChildren(QtWidgets.QLabel)[0].setText(name)
             points = self.team_objects[name].get_points()
             frame.findChildren(QtWidgets.QLineEdit)[0].setText(str(points))
 

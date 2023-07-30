@@ -119,17 +119,30 @@ class MenuWindow(QMainWindow):
         for lineEdit in self.team_name_frame.findChildren(QtWidgets.QLineEdit):
             team_names.append(lineEdit.text())
 
-        return team_names
+        if any(name == '' for name in team_names):
+            msg = QtWidgets.QMessageBox()
+            msg.setWindowTitle("Jeopardy! - Blank Team Names")
+            pixmapi = getattr(QtWidgets.QStyle, "SP_MessageBoxWarning")
+            icon = self.style().standardIcon(pixmapi)
+            msg.setWindowIcon(icon)
+            msg.setText("\nAll Team entries must be filled!\n")
+            msg.setStandardButtons(
+                QtWidgets.QMessageBox.Ok
+            )
+            msg.exec_()
+        else:
+            return team_names
 
     def open_game_window(self):
         '''
         Function to open the game window
         '''
-        self.btn_play.setEnabled(False)
         team_names = self.get_team_names()
-        self.game_window = GameWindow(
-            parent=self,
-            team_names=team_names,
-            category_names=self.category_names,
-            questions=self.all_questions,
-        )
+        if team_names:
+            self.btn_play.setEnabled(False)
+            self.game_window = GameWindow(
+                parent=self,
+                team_names=team_names,
+                category_names=self.category_names,
+                questions=self.all_questions,
+            )
