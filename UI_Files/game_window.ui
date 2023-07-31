@@ -19,25 +19,6 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout_6">
     <item>
-     <widget class="QLabel" name="title">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">color: rgb(255, 0, 0);</string>
-      </property>
-      <property name="text">
-       <string>In Edit Mode</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QFrame" name="main_frame">
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -1128,13 +1109,6 @@ color: rgb(255, 170, 0);</string>
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuEdit">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-    <addaction name="actionEdit_Mode"/>
-   </widget>
-   <addaction name="menuEdit"/>
   </widget>
   <action name="actionEdit_Mode">
    <property name="text">
