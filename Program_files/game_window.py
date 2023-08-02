@@ -571,22 +571,29 @@ class TeamWindow(QMainWindow):
         msg.setDefaultButton(QtWidgets.QMessageBox.Ok)
         user = msg.exec_()
 
-        # if user clicks 'Ok':
-        if user == QtWidgets.QMessageBox.Ok:
-            # getting what lineEdit has been editted.
-            sender = self.sender()
-            sender_name = sender.objectName()
-            lineEdit = self.findChild(QtWidgets.QLineEdit, sender_name)
+        # checking user's response
+        sender = self.sender()
+        sender_name = sender.objectName()
+        lineEdit = self.findChild(QtWidgets.QLineEdit, sender_name)
+        team_objects = self.parent().team_objects
+        match user:
+            case QtWidgets.QMessageBox.Ok:
+                # getting what lineEdit has been editted.
 
-            points = lineEdit.text()  # user typed points.
-            lineEdit.setText(points)
+                points = lineEdit.text()  # user typed points.
+                lineEdit.setText(points)
 
-            # updating Team Object's points:
-            team_objects = self.parent().team_objects
-            for index, frame in enumerate(self.frames_to_show):
-                if lineEdit in frame.findChildren(QtWidgets.QLineEdit):
-                    team_name = list(team_objects)[index]
-                    team_objects[team_name].set_points(float(points))
+                # updating Team Object's points:
+                for index, frame in enumerate(self.frames_to_show):
+                    if lineEdit in frame.findChildren(QtWidgets.QLineEdit):
+                        team_name = list(team_objects)[index]
+                        team_objects[team_name].set_points(float(points))
+            case _: # user cancels
+                for index, frame in enumerate(self.frames_to_show):
+                    if lineEdit in frame.findChildren(QtWidgets.QLineEdit):
+                        team_name = list(team_objects)[index]
+                        points = team_objects[team_name].get_points()
+                        lineEdit.setText("{:.0f}".format(points))
 
     def points_changed(self, points=0) -> None:
         '''
