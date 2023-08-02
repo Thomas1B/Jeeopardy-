@@ -12,7 +12,7 @@ from Program_files.game_window import Question
 
 
 # Column (category) name for each section of questions
-category_names = []
+category_names = ['Category 1', 'Category 2', 'Category 3', 'Category 4', 'Category 5', 'Category 6']
 
 category1 = [
     Question(
