@@ -6,7 +6,7 @@ This game runs using Python with PyQt5 module for the gui.
 
 Download PyQt5 https://pypi.org/project/PyQt5/
 
-To run the game type *"python Jeopardy.py"* or use the click the exe file.
+To run the game type *"python Jeopardy.py"* or click the exe file.
 
 ___
 
