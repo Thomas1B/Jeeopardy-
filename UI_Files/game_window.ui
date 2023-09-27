@@ -1109,10 +1109,17 @@ color: rgb(255, 170, 0);</string>
      <height>21</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options</string>
+    </property>
+    <addaction name="actionMute"/>
+   </widget>
+   <addaction name="menuOptions"/>
   </widget>
-  <action name="actionEdit_Mode">
+  <action name="actionMute">
    <property name="text">
-    <string>Edit Mode</string>
+    <string>Mute Music</string>
    </property>
   </action>
  </widget>

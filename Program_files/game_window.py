@@ -1,8 +1,9 @@
 from PyQt5.QtWidgets import QMainWindow, QWidget, QSizePolicy
 from PyQt5 import QtWidgets, uic
-from PyQt5.QtCore import Qt, pyqtSignal
+from PyQt5.QtCore import Qt, pyqtSignal, QUrl
 from .question_window import QuestionWindow, Question
 from PyQt5.QtGui import QIntValidator, QIcon
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 
 
 class Team():
@@ -62,7 +63,7 @@ class GameWindow(QMainWindow):
     def __init__(self, team_names: list, category_names: list, questions: list, parent=None):
         super(GameWindow, self).__init__(parent=parent)
         uic.loadUi('UI_Files/game_window.ui', self)
-        # self.showMaximized()
+        self.showMaximized()
 
         self.team_names = team_names
         self.team_objects = self.make_teams()
@@ -72,14 +73,16 @@ class GameWindow(QMainWindow):
         self.category_names = category_names
         self.all_questions = questions
         self.question_window = None
+        self.music_muted = False
 
         # Main Frame
         self.main_frame = self.findChild(QtWidgets.QFrame, 'main_frame')
 
-        # Menu Actions
-        self.edit_mode_action = self.findChild(
-            QtWidgets.QAction, 'actionEdit_Mode'
+        # toolbar
+        self.action_toggle_mute = self.findChild(
+            QtWidgets.QAction, "actionMute"
         )
+        self.action_toggle_mute.triggered.connect(self.toggle_mute)
 
         # Column (Category) Headers
         self.category_header_1 = self.findChild(
@@ -109,9 +112,18 @@ class GameWindow(QMainWindow):
         self.set_category_names(category_names)
         self.show()
 
+        # showing team window
         self.team_window = TeamWindow(
             team_names=team_names, team_objects=self.team_objects, parent=self)
         self.team_window.show()
+
+        # object to play song
+        self.media_player = QMediaPlayer()
+        self.media_player.setMedia(
+            QMediaContent(
+                QUrl.fromLocalFile('Program_files/Jeopardy-theme-song.mp3')
+            )
+        )
 
     def closeEvent(self, event) -> None:
         '''
@@ -135,6 +147,18 @@ class GameWindow(QMainWindow):
             event.accept()
         else:
             event.ignore()
+
+    def toggle_mute(self):
+        '''
+        Function to toggle the music volume.
+        '''
+        self.music_muted = not self.music_muted  # switches bool state.
+        self.media_player.setMuted(self.music_muted)
+
+        if self.music_muted:
+            self.action_toggle_mute.setText('Unmute Music')
+        else:
+            self.action_toggle_mute.setText('Mute Music')
 
     def make_teams(self) -> None:
         '''
@@ -374,6 +398,7 @@ class GameWindow(QMainWindow):
             clicked_btn=clicked_btn
         )
         self.question_window.show()
+        self.media_player.play()
 
 
 class TeamWindow(QMainWindow):
@@ -588,7 +613,7 @@ class TeamWindow(QMainWindow):
                     if lineEdit in frame.findChildren(QtWidgets.QLineEdit):
                         team_name = list(team_objects)[index]
                         team_objects[team_name].set_points(float(points))
-            case _: # user cancels
+            case _:  # user cancels
                 for index, frame in enumerate(self.frames_to_show):
                     if lineEdit in frame.findChildren(QtWidgets.QLineEdit):
                         team_name = list(team_objects)[index]

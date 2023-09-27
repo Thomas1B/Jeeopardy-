@@ -83,8 +83,8 @@ class QuestionWindow(QMainWindow):
     def __init__(self,  questionObj=None,  parent=None, clicked_btn=None):
         super(QuestionWindow, self).__init__(parent=parent)
         uic.loadUi('UI_Files/question_window.ui', self)
-        self.resize(1500, 900)
-        self.move(200, 50)
+        self.showMaximized()
+
 
         # parent window
         self.parent = parent
@@ -292,6 +292,8 @@ class QuestionWindow(QMainWindow):
     def closeEvent(self, event) -> None:
         if self.points_added:
             event.accept()
+            self.parent.media_player.stop()
+
         else:
             # pop up telling user points haven't been added.
             event.ignore()
@@ -312,6 +314,7 @@ class QuestionWindow(QMainWindow):
             match user:
                 case QtWidgets.QMessageBox.Ok:
                     event.accept()
+                    self.parent.media_player.stop()
                 case _:
                     event.ignore()
 
@@ -374,6 +377,8 @@ class QuestionWindow(QMainWindow):
         text = f'Answer:\n\n{self.answer}\n'
         self.answer_label.setText(text)
         self.answer_label.show()
+        self.parent.media_player.stop()
+
         self.clicked_btn.setStyleSheet(
             '''
             QPushButton {
